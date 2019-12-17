@@ -1,18 +1,27 @@
 const express = require("express");
-const app = express();
-const formidable = require("formidable");
+const formidableMiddleware = require("express-formidable");
 const mongoose = require("mongoose");
 
+const app = express();
+app.use(formidableMiddleware()); // traiter les requêtes POST
+
+// Connexion à la BDD
+mongoose.connect("mongodb://localhost/test", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 app.get("/", (req, res) => {
-  res.send("Hi");
+  res.json({
+    message: "Un message de test"
+  });
 });
 
-app.get("/hello", (req, res) => {
-  res.send("Hello world");
-});
-
-app.get("/hola", (req, res) => {
-  res.send("ola");
+app.post("/login", (req, res) => {
+  res.json({
+    username: req.fields.username,
+    password: req.fields.password
+  });
 });
 
 app.listen(4000, () => {
