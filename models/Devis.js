@@ -34,7 +34,7 @@ const Devis = mongoose.model("Devis", {
   notary: {
     type: Number
   },
-  totalAMount: {
+  totalAmount: {
     type: Number
   },
   email: {
