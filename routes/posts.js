@@ -16,8 +16,16 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   // on transmet le model qu'on a crée à notre bdd
   const post = new Post({
-    title: req.body.title,
-    description: req.body.description
+    type: req.body.type,
+    etat: req.body.etat,
+    usage: req.body.usage,
+    situation: req.body.situation,
+    country: req.body.city,
+    montant: req.body.montant,
+    travaux: req.body.travaux,
+    notaire: req.body.budget,
+    budget: req.body.budget,
+    email: req.body.email
   });
   try {
     const savedPost = await post.save();
@@ -52,7 +60,20 @@ router.patch("/:postId", async (req, res) => {
   try {
     const updatedPost = await Post.updateOne(
       { _id: req.params.postId },
-      { $set: { title: req.body.title, description: req.body.description } }
+      {
+        $set: {
+          type: req.body.type,
+          etat: req.body.etat,
+          usage: req.body.usage,
+          situation: req.body.situation,
+          country: req.body.city,
+          montant: req.body.montant,
+          travaux: req.body.travaux,
+          notaire: req.body.budget,
+          budget: req.body.budget,
+          email: req.body.email
+        }
+      }
     );
     res.json(updatedPost);
   } catch (err) {

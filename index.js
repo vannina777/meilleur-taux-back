@@ -1,13 +1,13 @@
 require("dotenv").config(); // permet de protéger les variables d'environnement
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser"); // permet de transmettre tout type d'informations
-const cors = require("cors");
+const mongoose = require("mongoose");
+const cors = require("cors"); // permet d'autoriser les demandes venant de l'extérieur
 
 // Middlewares
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
 
 // CONNEXION DB
 mongoose.connect(
@@ -19,13 +19,15 @@ mongoose.connect(
   () => console.log("connected to my db!")
 );
 
-// IMPORT ROUTES
-const postsRoute = require("./routes/posts");
-app.use("/posts", postsRoute); // permet de remplacer '/' par posts dans routes
+// Import Model
+require("./models/Devis");
 
-app.get("/", (req, res) => {
-  res.send("We are at home");
-});
+// Importe la route
+const devisRoutes = require("./routes/devis");
+// Et active la route
+app.use(devisRoutes);
 
 // LISTEN SERVER
-app.listen(4000);
+app.listen(4000, () => {
+  console.log("Server started");
+});

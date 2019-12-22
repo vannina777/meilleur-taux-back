@@ -1,17 +1,49 @@
 // models/User.js
 const mongoose = require("mongoose");
 const PostSchema = mongoose.Schema({
-  title: {
+  habitation: {
     type: String,
     required: true
   },
-  description: {
+  ancneuf: {
     type: String,
     required: true
   },
-  date: {
-    type: Date,
-    default: Date.now
+  usage: {
+    type: String,
+    default: true
+  },
+  situation: {
+    type: String,
+    default: true
+  },
+  country: {
+    type: String,
+    default: true
+  },
+  city: {
+    type: String,
+    default: true
+  },
+  montant: {
+    type: Number,
+    default: true
+  },
+  travaux: {
+    type: Number,
+    default: true
+  },
+  notaire: {
+    type: Number,
+    default: true
+  },
+  budget: {
+    type: Number,
+    default: true
+  },
+  email: {
+    type: String,
+    default: true
   }
 });
 
