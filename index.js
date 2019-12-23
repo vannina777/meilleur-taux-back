@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser"); // permet de transmettre tout type d'informations
 const mongoose = require("mongoose");
-const cors = require("cors"); // permet d'autoriser les demandes venant de l'extérieur
+const cors = require("cors"); // permet d'autoriser les demandes venant de l'extérieur OK
 
 // Middlewares
 app.use(bodyParser.json());
